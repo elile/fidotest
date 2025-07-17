@@ -3,13 +3,18 @@ package com.example.fidotest.presentation.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fidotest.domain.news.NewsRepository
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class NewsViewModel(
     private val repository: NewsRepository
 ) : ViewModel() {
+
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> = _isLoading
 
     val articles = repository.getArticles()
         .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
@@ -19,7 +24,12 @@ class NewsViewModel(
 
     fun refresh() {
         viewModelScope.launch {
-            repository.refreshArticles()
+            _isLoading.value = true
+            try {
+                repository.refreshArticles()
+            } finally {
+                _isLoading.value = false
+            }
         }
     }
 }
