@@ -15,6 +15,7 @@ class NewsViewModel(
         .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
     fun getArticleById(id: Int) = repository.getArticle(id)
+        .stateIn(viewModelScope, SharingStarted.Lazily, null)
 
     fun refresh() {
         viewModelScope.launch {

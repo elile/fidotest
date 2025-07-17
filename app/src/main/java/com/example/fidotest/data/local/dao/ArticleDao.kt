@@ -20,7 +20,7 @@ interface ArticleDao {
     fun getAllArticles(): Flow<List<ArticleEntity>>
 
     @Query("SELECT * FROM articles WHERE id=:id")
-    fun getArticle(id: Int): Flow<ArticleEntity>
+    fun getArticleById(id: Int): Flow<ArticleEntity?>
 
     @Query("DELETE FROM articles")
     suspend fun clearArticles()

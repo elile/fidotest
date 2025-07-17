@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface NewsRepository {
     fun getArticles(): Flow<List<ArticleUi>>
-    fun getArticle(id: Int): Flow<ArticleUi>
+    fun getArticle(id: Int): Flow<ArticleUi?>
 
     suspend fun refreshArticles()
 }

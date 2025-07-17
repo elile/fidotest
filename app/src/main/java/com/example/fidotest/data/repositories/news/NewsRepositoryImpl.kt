@@ -18,9 +18,13 @@ class NewsRepositoryImpl(
             .map { entities -> ArticleMapper.entityListToUiList(entities) }
     }
 
-    override fun getArticle(id: Int): Flow<ArticleUi> {
-        return articleDao.getArticle(id).map { ArticleMapper.entityToUi(it) }
+    override fun getArticle(id: Int): Flow<ArticleUi?> {
+        return articleDao.getArticleById(id)
+            .map { entity ->
+                entity?.let { ArticleMapper.entityToUi(it) }
+            }
     }
+
 
     override suspend fun refreshArticles() {
         val response = apiService.getEverything()

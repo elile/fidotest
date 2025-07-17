@@ -57,8 +57,8 @@ fun Navigation(viewModel: NewsViewModel = koinViewModel()) {
                 }
             }
             composable(route = newsScreenTag) { navBackStackEntry ->
-                val id = navBackStackEntry.arguments?.getString("id")
-                NewsDetailsScreen(viewModel = viewModel, id = id!!)
+                val id = navBackStackEntry.arguments?.getString("id", "")
+                NewsDetailsScreen(viewModel = viewModel, id = id!!.toInt())
             }
         }
 

@@ -32,8 +32,8 @@ import com.example.fidotest.presentation.viewmodels.NewsViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun NewsDetailsScreen(viewModel: NewsViewModel = koinViewModel(), id: String) {
-    val article by viewModel.getArticleById(id.toInt()).collectAsState(null)
+fun NewsDetailsScreen(viewModel: NewsViewModel = koinViewModel(), id: Int) {
+    val article by viewModel.getArticleById(id).collectAsState()
     val context = LocalContext.current
 
     article?.let { news ->
@@ -126,5 +126,5 @@ fun NewsDetailsScreen(viewModel: NewsViewModel = koinViewModel(), id: String) {
 @Preview
 @Composable
 fun NewsDetailsScreenPreview() {
-    NewsDetailsScreen(id = "1")
+    NewsDetailsScreen(id = 1)
 }
