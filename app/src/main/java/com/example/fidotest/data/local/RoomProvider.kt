@@ -9,14 +9,14 @@ import com.example.fidotest.data.local.entities.ArticleEntity
 
 object RoomProvider {
     @Database(entities = [ArticleEntity::class], version = 1)
-    abstract class TaskDb : RoomDatabase() {
+    abstract class ArticleDb : RoomDatabase() {
         abstract fun articleDao(): ArticleDao
     }
 
     fun provideDatabase(context: Context) = Room.databaseBuilder(
         context,
-        TaskDb::class.java, "articles-db"
+        ArticleDb::class.java, "articles-db"
     ).build()
 
-    fun provideArticleDao(db: TaskDb) = db.articleDao()
+    fun provideArticleDao(db: ArticleDb) = db.articleDao()
 }

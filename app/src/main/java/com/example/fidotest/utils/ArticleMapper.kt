@@ -22,12 +22,14 @@ object ArticleMapper {
 
     fun entityToUi(entity: ArticleEntity): ArticleUi {
         return ArticleUi(
+            id = entity.id,
             title = entity.title.orEmpty(),
             author = entity.author ?: "Unknown",
             imageUrl = entity.urlToImage,
             publishedAt = entity.publishedAt.orEmpty(),
             description = entity.description,
-            articleUrl = entity.url.orEmpty()
+            articleUrl = entity.url.orEmpty(),
+            content = entity.content.orEmpty()
         )
     }
 

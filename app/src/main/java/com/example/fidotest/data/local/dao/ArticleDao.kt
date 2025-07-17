@@ -19,6 +19,9 @@ interface ArticleDao {
     @Query("SELECT * FROM articles ORDER BY publishedAt DESC")
     fun getAllArticles(): Flow<List<ArticleEntity>>
 
+    @Query("SELECT * FROM articles WHERE id=:id")
+    fun getArticle(id: Int): Flow<ArticleEntity>
+
     @Query("DELETE FROM articles")
     suspend fun clearArticles()
 }

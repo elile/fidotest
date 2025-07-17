@@ -9,4 +9,7 @@ object Constants {
     const val DEFAULT_QUERY = "tesla"
     const val DEFAULT_FROM_DATE = "2025-06-17"
     const val DEFAULT_SORT_BY = "publishedAt"
+
+    const val allNewsScreenTag = "newsList"
+    const val newsScreenTag = "news?id={id}"
 }
